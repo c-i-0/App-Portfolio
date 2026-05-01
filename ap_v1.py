@@ -12,38 +12,38 @@ import streamlit as st
 
 import streamlit as st
 
-# --- ここから追加：スマホ＆iPad向けのサイズ調整 ---
+import streamlit as st
+
 st.markdown(
     """
     <style>
-    /* 1. スマホ向けの調整 (画面幅 640px 以下) */
-    @media (max-width: 640px) {
-        html { font-size: 14px; }
-        .block-container { padding: 1rem !important; }
-    }
-
-    /* 2. iPad/タブレット向けの調整 (画面幅 641px 〜 1024px) */
-    @media (min-width: 641px) and (max-width: 1024px) {
+    /* iPad Pro 11インチ（834px〜1194px付近）をターゲットにした設定 */
+    @media (min-width: 641px) and (max-width: 1200px) {
         html {
-            /* 全体的なフォントサイズをガッツリ下げる */
-            font-size: 12px; 
+            /* 基本の文字サイズをさらに下げて情報量を増やす */
+            font-size: 9px !important; 
         }
-        /* 画面全体を60%スケールにするイメージで余白や要素を調整 */
         .block-container {
-            max-width: 60% !important; /* コンテンツ幅を絞る */
-            margin: 0 auto;
+            /* 左右の余白を削りつつ、コンテンツ幅を調整 */
+            max-width: 90% !important; 
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
         }
-        /* ボタンやグラフなどもさらにコンパクトに */
+        /* 各要素の間隔を詰めて全体を縮小 */
+        [data-testid="stVerticalBlock"] {
+            gap: 0.5rem !important;
+        }
+        /* ボタンや入力欄をさらにコンパクトに */
         .stButton button, .stSelectbox, .stTextInput input {
-            transform: scale(0.8); /* 要素自体を少し縮小 */
-            transform-origin: left;
+            padding: 2px 10px !important;
+            min-height: 1.5rem !important;
         }
     }
     </style>
     """,
     unsafe_allow_html=True
 )
-# --- ここまで追加 ---
+
 
 
 st.title("マイアプリ")
