@@ -8,6 +8,44 @@ import yfinance as yf
 import re
 import ast
 
+import streamlit as st
+
+# --- ここから追加：スマホ向けの文字サイズ調整 ---
+st.markdown(
+    """
+    <style>
+    @media (max-width: 640px) {
+        /* 全体の文字サイズを小さくする */
+        html {
+            font-size: 14px;
+        }
+        /* ボタンや入力フォームなどのフォントサイズを調整 */
+        .stButton button, .stSelectbox, .stTextInput input {
+            font-size: 12px !important;
+        }
+        /* タイトルなどの大きな文字を小さくする */
+        h1 {
+            font-size: 1.5rem !important;
+        }
+        h2 {
+            font-size: 1.2rem !important;
+        }
+        /* 余白（パディング）を削って表示領域を広げる */
+        .block-container {
+            padding-top: 1rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+# --- ここまで追加 ---
+
+st.title("マイアプリ")
+# 以下、元のコード...
+
 # --- 0. ページ設定・カスタムCSS ---
 st.set_page_config(page_title="資産運用シミュレーター V2", layout="wide")
 st.markdown("""
