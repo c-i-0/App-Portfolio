@@ -10,31 +10,33 @@ import ast
 
 import streamlit as st
 
-# --- ここから追加：スマホ向けの文字サイズ調整 ---
+import streamlit as st
+
+# --- ここから追加：スマホ＆iPad向けのサイズ調整 ---
 st.markdown(
     """
     <style>
+    /* 1. スマホ向けの調整 (画面幅 640px 以下) */
     @media (max-width: 640px) {
-        /* 全体の文字サイズを小さくする */
+        html { font-size: 14px; }
+        .block-container { padding: 1rem !important; }
+    }
+
+    /* 2. iPad/タブレット向けの調整 (画面幅 641px 〜 1024px) */
+    @media (min-width: 641px) and (max-width: 1024px) {
         html {
-            font-size: 14px;
+            /* 全体的なフォントサイズをガッツリ下げる */
+            font-size: 12px; 
         }
-        /* ボタンや入力フォームなどのフォントサイズを調整 */
-        .stButton button, .stSelectbox, .stTextInput input {
-            font-size: 12px !important;
-        }
-        /* タイトルなどの大きな文字を小さくする */
-        h1 {
-            font-size: 1.5rem !important;
-        }
-        h2 {
-            font-size: 1.2rem !important;
-        }
-        /* 余白（パディング）を削って表示領域を広げる */
+        /* 画面全体を60%スケールにするイメージで余白や要素を調整 */
         .block-container {
-            padding-top: 1rem !important;
-            padding-left: 1rem !important;
-            padding-right: 1rem !important;
+            max-width: 60% !important; /* コンテンツ幅を絞る */
+            margin: 0 auto;
+        }
+        /* ボタンやグラフなどもさらにコンパクトに */
+        .stButton button, .stSelectbox, .stTextInput input {
+            transform: scale(0.8); /* 要素自体を少し縮小 */
+            transform-origin: left;
         }
     }
     </style>
@@ -42,6 +44,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 # --- ここまで追加 ---
+
 
 st.title("マイアプリ")
 # 以下、元のコード...
